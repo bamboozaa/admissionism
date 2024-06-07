@@ -11,7 +11,7 @@ class StoreEnquiryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,30 @@ class StoreEnquiryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'nationality' => 'required|string|max:255',
+            'program_interested' => 'required',
+            'entry_semester' => 'required',
+            'current_education' => 'required',
+            'school_name' => 'required',
+            'email' => 'required|string|max:255',
+            'direct_message' => 'required|string|max:255',
+            'where_did_you_hear' => 'required|string|max:255',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Please enter your name.',
+            'nationality.required' => 'Please enter your nationality.',
+            'program_interested.required' => 'Please enter the program you are interested in.',
+            'entry_semester.required' => 'Please select a semester.',
+            'current_education.required' => 'Please enter current education.',
+            'school_name.required' => 'Please enter the school name.',
+            'email.required' => 'Please enter the Email Address.',
+            'direct_message.required' => 'Please enter a message to send to us.',
+            'where_did_you_hear.required' => 'Please fill in where you heard about us.',
         ];
     }
 }
